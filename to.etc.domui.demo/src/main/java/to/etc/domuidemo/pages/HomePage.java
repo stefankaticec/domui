@@ -9,6 +9,7 @@ import to.etc.domuidemo.ComponentListPage;
 import to.etc.domui.util.vcs.GitOptions;
 import to.etc.domuidemo.components.SourceIcon;
 import to.etc.domuidemo.pages.cddb.CdCollection;
+import to.etc.domuidemo.pages.kotlin.KotlinLinks;
 import to.etc.domuidemo.pages.test.JUnitTestMenuPage;
 
 public class HomePage extends MenuPage {
@@ -49,6 +50,8 @@ public class HomePage extends MenuPage {
 
 		addCaption("Detailed examples and wiki page");
 		addLink(ComponentListPage.class, "Component overview page");
+		addLink(KotlinLinks.class, "Kotlin examples");
+
 
 		Div commits = new Div("d-git-commits");
 		add(commits);
