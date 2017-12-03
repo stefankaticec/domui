@@ -93,6 +93,7 @@
         <module>to.etc.webapp.core</module>
         <module>sass-compiler</module>
         <module>to.etc.domui</module>
+        <module>kotlin-support</module>
         <module>to.etc.domui.hibutil</module>
         <module>to.etc.domui.derbydata</module>
         <module>to.etc.domui.legacy</module>

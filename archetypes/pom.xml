@@ -17,6 +17,7 @@
 
     <modules>
         <module>domui-hello</module>
+        <module>../kotlin-support</module>
     </modules>
 
     <reporting>
