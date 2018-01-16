@@ -86,6 +86,12 @@
             <artifactId>to.etc.domui.formbuilder</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>kotlin-support</artifactId>
+            <version>1.2-SNAPSHOT</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.mozilla/rhino -->
         <dependency>
             <groupId>org.mozilla</groupId>
