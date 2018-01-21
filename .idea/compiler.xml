@@ -35,9 +35,9 @@
       <module name="domui-archetypes" target="1.5" />
       <module name="domui-hello" target="1.5" />
       <module name="domui-hibernate-generator" target="1.8" />
-      <module name="domui-utilities" target="1.5" />
-      <module name="kotlin-support" target="1.8" />
+      <module name="domui-utilities" target="1.8" />
       <module name="gendb" target="1.5" />
+      <module name="kotlin-support" target="1.8" />
       <module name="property-annotations-processor" target="1.8" />
       <module name="to.etc.alg" target="1.8" />
       <module name="to.etc.db" target="1.8" />
@@ -48,7 +48,7 @@
       <module name="to.etc.domui.formbuilder" target="1.8" />
       <module name="to.etc.domui.hibutil" target="1.8" />
       <module name="to.etc.domui.legacy" target="1.8" />
-      <module name="to.etc.domui.parent" target="1.5" />
+      <module name="to.etc.domui.parent" target="1.8" />
       <module name="to.etc.domui.selenium" target="1.8" />
       <module name="to.etc.jsr305" target="1.8" />
       <module name="to.etc.logger" target="1.8" />

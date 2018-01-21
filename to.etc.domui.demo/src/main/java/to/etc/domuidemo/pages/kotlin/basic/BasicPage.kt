@@ -10,9 +10,6 @@ import to.etc.domui.kotlin.ui.tabPanel
  * Created on 21-11-17.
  */
 class KtPage : UrlPage() {
-	var myName: String = ""
-
-
 	override fun createContent() {
 		div(css="kt-test") {
 			span(text="Hello, world")
