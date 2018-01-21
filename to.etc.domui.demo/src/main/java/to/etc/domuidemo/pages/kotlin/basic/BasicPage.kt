@@ -16,6 +16,8 @@ class KtPage : UrlPage() {
 
 			tabPanel {
 
+
+
 			}
 		}
 	}
