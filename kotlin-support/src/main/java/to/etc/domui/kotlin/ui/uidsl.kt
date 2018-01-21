@@ -12,7 +12,7 @@ import to.etc.domui.dom.html.Span
 fun NodeContainer.div(css: String  ="", init: NodeContainer.() -> Unit): Div {
 	val d = Div()
 	add(d)
-	if(css.length > 0)
+	if(css.isNotEmpty())
 		d.addCssClass(css)
 	d.init()
 	return d
@@ -21,7 +21,7 @@ fun NodeContainer.div(css: String  ="", init: NodeContainer.() -> Unit): Div {
 fun NodeContainer.span(text: String="", init: Span.() -> Unit = {}): Span {
 	val d = Span()
 	add(d)
-	if(text.length > 0)
+	if(text.isNotEmpty())
 		d.add(text)
 	d.init()
 	return d
