@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>to.etc.domui</groupId>
+    <artifactId>demo-vera</artifactId>
+    <version>1.2-SNAPSHOT</version>
+
+    <parent>
+        <groupId>to.etc.domui</groupId>
+        <artifactId>to.etc.domui.parent</artifactId>
+        <version>1.2-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
+    </parent>
+
+    <packaging>war</packaging>
+    <name>domui :: VERA demo</name>
+    <description>Demo program</description>
+    <inceptionYear>2018</inceptionYear>
+
+
+    <properties>
+        <jetty.http.port>8088</jetty.http.port>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>to.etc.logger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>to.etc.jsr305</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>to.etc.alg</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>to.etc.db</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>to.etc.webapp.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>to.etc.domui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>to.etc.domui.hibutil</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>to.etc.domui</groupId>
+            <artifactId>kotlin-support</artifactId>
+            <version>1.2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mozilla/rhino -->
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+        </dependency>
+
+        <!-- Test dependencies  -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>vera</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!--                    <overlays>
+                                            <overlay>
+                                                <groupId>to.etc.domui</groupId>
+                                                <artifactId>to.etc.domui.demo.web</artifactId>
+                                            </overlay>
+                                        </overlays>
+                    -->
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>index.html</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <dateFormatTimeZone>${user.timezone}</dateFormatTimeZone>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/domui.git.properties</generateGitPropertiesFilename>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Enable TestUI mode on the server to make Selenium tests run. -->
+                    <systemProperties>
+                        <systemProperty>
+                            <name>domui.testui</name>
+                            <value>true</value>
+                        </systemProperty>
+                    </systemProperties>
+
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <stopPort>8099</stopPort>
+                    <stopKey>snippergrump</stopKey>
+                    <webApp>
+                        <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+                            <!--<resourcesAsCSV>${basedir}/../../shared/web/src/main/webapp,${basedir}/src/main/webapp</resourcesAsCSV>-->
+                            <resourcesAsCSV>${basedir}/src/main/webapp</resourcesAsCSV>
+                        </baseResource>
+                        <webInfIncludeJarPattern>^$</webInfIncludeJarPattern>
+                        <containerIncludeJarPattern>^$</containerIncludeJarPattern>
+                        <contextPath>/demo</contextPath>
+                    </webApp>
+                    <httpConnector>
+                        <port>${jetty.http.port}</port>
+                    </httpConnector>
+                </configuration>
+
+                <!-- Want to use this for integration tests. -->
+                <!-- See http://maven.apache.org/surefire/maven-failsafe-plugin/usage.html -->
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon> <!-- IntelliJ marks this as error but it is valid, see http://stackoverflow.com/questions/34996128/maven-jetty-plugin-daemon-element-not-allowed-here -->
+                            <stopPort>8099</stopPort>
+                            <stopKey>snippergrump</stopKey>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

@@ -100,6 +100,7 @@
         <module>to.etc.domui.formbuilder</module>
         <module>to.etc.domui.selenium</module>
         <module>to.etc.domui.demo</module>
+        <module>vera</module>
         <module>to.etc.dbcompare</module>
         <module>archetypes</module>
         <module>utilities</module>

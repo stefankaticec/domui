@@ -29,6 +29,7 @@
         <module name="to.etc.syntaxer" />
         <module name="to.etc.webapp.core" />
         <module name="vaadin-sass-compiler" />
+        <module name="vera" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -56,6 +57,7 @@
       <module name="to.etc.syntaxer" target="1.8" />
       <module name="to.etc.webapp.core" target="1.8" />
       <module name="vaadin-sass-compiler" target="1.6" />
+      <module name="vera" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="EclipseCompilerSettings">
