@@ -9,6 +9,7 @@ import to.etc.domui.server.DomApplication
 import to.etc.domui.util.db.QCopy
 import to.etc.util.DeveloperOptions
 import to.etc.vera.db.DbUtil
+import to.etc.vera.pages.Index
 import to.etc.webapp.query.QContextManager
 import java.io.File
 import java.io.FileInputStream

@@ -100,6 +100,7 @@ class DbVeraAttribute {
 object DbUtil {
 	fun initialize(ds: DataSource) : Unit {
 		HibernateConfigurator.addClasses(DbVeraAttribute::class.java, DbVeraClass::class.java, DbVeraDomain::class.java)
+		HibernateConfigurator.schemaUpdate(HibernateConfigurator.Mode.UPDATE)
 		HibernateConfigurator.initialize(ds)
 	}
 
