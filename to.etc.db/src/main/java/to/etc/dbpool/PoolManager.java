@@ -192,6 +192,10 @@ final public class PoolManager {
 		return definePool(id, pc);
 	}
 
+	public ConnectionPool definePool(Properties properties, String id) throws Exception {
+		return definePool(new PropertiesSource(properties), id);
+	}
+
 	public ConnectionPool definePool(final String id, final String driver, final String url, final String userid, final String password, final String driverpath) throws SQLException {
 		PoolConfig pc = new PoolConfig(driver, url, userid, password, driverpath);
 		return definePool(id, pc);

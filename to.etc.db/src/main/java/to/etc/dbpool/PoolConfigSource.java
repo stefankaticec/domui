@@ -34,25 +34,6 @@ import java.io.*;
  * Created on Jan 16, 2007
  */
 abstract public class PoolConfigSource {
-	private File m_src;
-
-	private File m_backupSrc;
-
-	PoolConfigSource() {}
-
-	public PoolConfigSource(File src, File back) {
-		m_src = src;
-		m_backupSrc = back;
-	}
-
-	public File getBackupSrc() {
-		return m_backupSrc;
-	}
-
-	public File getSrc() {
-		return m_src;
-	}
-
 	abstract public String getProperty(String section, String name) throws Exception;
 
 	public boolean getBool(String sec, String name, boolean def) throws Exception {
@@ -79,20 +60,11 @@ abstract public class PoolConfigSource {
 		}
 	}
 
-	@Override
-	public String toString() {
-		if(m_backupSrc != null)
-			return m_src + " (" + m_backupSrc + ")";
-		if(m_src == null)
-			return "(parameters)";
-		return m_src.toString();
-	}
-
 	static PoolConfigSource create(File f) {
 		String name = f.getName().toLowerCase();
 		if(name.endsWith(".xml")) {
 			return new XmlSource(f, new File(f.toString() + ".local"));
 		}
-		return new PropertiesSource(f, new File(f.toString() + ".local"));
+		return new FileBasedPropertiesSource(f, new File(f.toString() + ".local"));
 	}
 }
