@@ -1,5 +1,7 @@
 package to.etc.vera.db
 
+import org.hibernate.annotations.GenericGenerator
+import org.hibernate.annotations.Parameter
 import org.hibernate.engine.SessionImplementor
 import org.hibernate.id.UUIDGenerationStrategy
 import to.etc.dbpool.PoolManager
@@ -45,6 +47,7 @@ class UUIDStrategy : UUIDGenerationStrategy {
 class DbVeraDomain {
 	var id : String? = null
 		@Column(name = "dom_id", length = 23, nullable = false)
+		@Id() @GeneratedValue(generator = "uuid2") @GenericGenerator(name="uuid2", strategy = "uuid2", parameters = [Parameter(name = "uuid_gen_strategy_class", value = "UuidStrategy")])
 		get
 
 	var name : String? = null
@@ -65,6 +68,7 @@ class DbVeraDomain {
 class DbVeraClass {
 	var id : String? = null
 		@Column(name = "cls_id", length = 23, nullable = false)
+		@Id() @GeneratedValue(generator = "uuid2") @GenericGenerator(name="uuid2", strategy = "uuid2", parameters = [Parameter(name = "uuid_gen_strategy_class", value = "UuidStrategy")])
 		get
 
 	var name : String? = null
@@ -81,6 +85,7 @@ class DbVeraClass {
 class DbVeraAttribute {
 	var id : String? = null
 		@Column(name = "att_id", length = 23, nullable = false)
+		@Id() @GeneratedValue(generator = "uuid2") @GenericGenerator(name="uuid2", strategy = "uuid2", parameters = [Parameter(name = "uuid_gen_strategy_class", value = "UuidStrategy")])
 		get
 
 	var name : String? = null
