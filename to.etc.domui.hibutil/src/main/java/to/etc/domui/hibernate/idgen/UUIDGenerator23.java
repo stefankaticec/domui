@@ -29,6 +29,8 @@ import java.util.UUID;
  * Created on 12-2-18.
  */
 final public class UUIDGenerator23 implements IdentifierGenerator {
+	static public final String NAME = "to.etc.domui.hibernate.idgen.UUIDGenerator23";
+
 	@Override public Serializable generate(SessionImplementor sessionImplementor, Object o) throws HibernateException {
 		UUID uuid = UUID.randomUUID();
 		byte[] data = new byte[16];
