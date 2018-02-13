@@ -24,11 +24,15 @@
  */
 package to.etc.webapp.query;
 
-import java.util.*;
+import kotlin.jvm.JvmClassMappingKt;
+import kotlin.reflect.KClass;
+import to.etc.webapp.annotations.GProperty;
 
-import javax.annotation.*;
-
-import to.etc.webapp.annotations.*;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Builds the "where" part of a query, or a part of that "where" part, under construction. The nodes added,
@@ -67,6 +71,15 @@ abstract public class QRestrictor<T> {
 		m_combinator = combinator;
 		m_metaTable = null;
 	}
+
+	protected QRestrictor(@Nonnull KClass<T> baseClass, @Nonnull QOperation combinator) {
+		Class<T> jc = JvmClassMappingKt.getJavaClass(baseClass);
+		m_baseClass = jc;
+		m_returnClass = jc;
+		m_combinator = combinator;
+		m_metaTable = null;
+	}
+
 
 	protected QRestrictor(@Nonnull ICriteriaTableDef<T> meta, @Nonnull QOperation combinator) {
 		m_metaTable = meta;

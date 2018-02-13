@@ -4,6 +4,7 @@ import to.etc.domui.component.tbl.DataTable
 import to.etc.domui.component.tbl.RowRenderer
 import to.etc.domui.component.tbl.SimpleSearchModel
 import to.etc.domui.dom.html.UrlPage
+import to.etc.domui.kotlin.criteria.qCriteria
 import to.etc.vera.db.DbVeraDomain
 import to.etc.webapp.query.QCriteria
 
@@ -26,7 +27,7 @@ class DomainListPage : UrlPage() {
 
 class DomainEditPage: UrlPage() {
 	override fun createContent() {
-		val q = QCriteria.create()
+		val q = DbVeraDomain::class.qCriteria()
 
 
 	}

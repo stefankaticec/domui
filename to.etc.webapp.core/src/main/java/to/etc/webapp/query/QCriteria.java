@@ -24,11 +24,12 @@
  */
 package to.etc.webapp.query;
 
-import java.util.*;
+import kotlin.reflect.KClass;
+import to.etc.webapp.annotations.GProperty;
 
-import javax.annotation.*;
-
-import to.etc.webapp.annotations.*;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Represents the selection of a list of persistent entity classes from the database. A QCriteria
@@ -42,8 +43,11 @@ import to.etc.webapp.annotations.*;
  * Created on Jun 24, 2008
  */
 public class QCriteria<T> extends QCriteriaQueryBase<T> {
-
 	protected QCriteria(@Nonnull final Class<T> b) {
+		super(b);
+	}
+
+	protected QCriteria(@Nonnull KClass<T> b) {
 		super(b);
 	}
 
@@ -61,6 +65,10 @@ public class QCriteria<T> extends QCriteriaQueryBase<T> {
 	@Nonnull
 	static public <U> QCriteria<U> create(@Nonnull final Class<U> clz) {
 		return new QCriteria<U>(clz);
+	}
+
+	static public <U> QCriteria<U> create(@Nonnull KClass<U> kclz) {
+		return new QCriteria<U>(kclz);
 	}
 
 	/**

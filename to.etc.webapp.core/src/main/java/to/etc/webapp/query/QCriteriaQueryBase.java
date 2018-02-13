@@ -24,11 +24,17 @@
  */
 package to.etc.webapp.query;
 
-import to.etc.webapp.*;
-import to.etc.webapp.annotations.*;
+import kotlin.reflect.KClass;
+import to.etc.webapp.ProgrammerErrorException;
+import to.etc.webapp.annotations.GProperty;
 
-import javax.annotation.*;
-import java.util.*;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Base class representing most of the query structure, just not the public interface part.
@@ -64,6 +70,10 @@ public class QCriteriaQueryBase<T> extends QRestrictor<T> {
 	private Map<String, QFetchStrategy> m_fetchMap = Collections.EMPTY_MAP;
 
 	protected QCriteriaQueryBase(@Nonnull Class<T> clz) {
+		super(clz, QOperation.AND);
+	}
+
+	protected QCriteriaQueryBase(@Nonnull KClass<T> clz) {
 		super(clz, QOperation.AND);
 	}
 
