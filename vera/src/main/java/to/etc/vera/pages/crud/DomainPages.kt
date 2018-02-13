@@ -22,5 +22,13 @@ class DomainListPage : UrlPage() {
 		val dt = DataTable(qm, rr)
 		add(dt)
 	}
+}
+
+class DomainEditPage: UrlPage() {
+	override fun createContent() {
+		val q = QCriteria.create()
+
+
+	}
 
 }
