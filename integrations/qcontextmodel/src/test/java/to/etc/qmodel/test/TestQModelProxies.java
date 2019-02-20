@@ -13,7 +13,7 @@ public class TestQModelProxies {
 	@Test
 	public void testSimpleProxy() throws Exception {
 		PojoClass pc = new PojoClass("Frits", 10, Arrays.asList("Hello", "World"));
-		PojoClass proxy = new ProxyGenerator().createPojoProxy(pc);
+		PojoClass proxy = new ProxyGenerator().createPojoProxy(null, pc);
 
 		String name = proxy.getName();
 		System.out.println(">> name = " + name);

@@ -97,6 +97,12 @@ final public class MetaManager {
 	}
 
 	@NonNull
+	static public ClassMetaModel getClassMeta(@NonNull Object instance) {
+		Class<?> aClass = instance.getClass();
+		return findClassMeta(aClass);
+	}
+
+	@NonNull
 	static public ClassMetaModel findClassMeta(@NonNull Class<?> clz) {
 		if(clz == null)
 			throw new IllegalArgumentException("Class<?> parameter cannot be null");
